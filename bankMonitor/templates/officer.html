@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% block title %}Officers{% endblock %}
+{% block body %}
+{% include 'layout/dash.html' %}
+    <div class="col-sm-10">
+        <a href="{% url 'officer-add' %}" class="btn btn-primary">Add Officer</a>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>E-Mail</th>
+                    <th>Bank</th>
+                    <th>User Type</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    {% for officer in officers %}
+                        <tr>
+                            <td>{{ officer.last_name }}, {{ officer.first_name }}</td>
+                            <td>{{ officer.username }}</td>
+                            <td>{{ officer.email }}</td>
+                            <td>{{ officer.bank.name }}</td>
+                            {% if officer.user_type == 'SU' %}
+                            <td>Super User</td>
+                            {% elif officer.user_type == 'A' %}
+                            <td>Super User</td>
+                            {% elif officer.user_type == 'B' %}
+                            <td>Super User</td>
+                            {% endif %}
+                            <td>
+                                <a class="btn btn-sm btn-warning" href="{% url 'officer-edit' officer.id %}">Edit</a>
+                                <a class="btn btn-sm btn-danger" href="{% url 'officer-delete' officer.id %}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

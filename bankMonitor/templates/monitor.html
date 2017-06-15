@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% block title %}Bank Monitor{% endblock %}
+{% block body %}
+{% include 'layout/dash.html' %}
+    <div class="col-sm-10 text-center">
+        <div class="col-sm-2">
+            {% for bank in banks %}
+            {% if bank.balance <= 0 %}
+                <div class="panel panel-danger">
+            {% elif bank.balance > 0 %}
+                <div class="panel panel-primary">
+            {% endif %}
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ bank.name }}</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Balance {{ bank.balance }}</h3>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}

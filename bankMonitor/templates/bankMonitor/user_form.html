@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% block title %}Manage Officer{% endblock %}
+{% block body %}
+{% include 'layout/dash.html' %}
+    <div class="col-sm-10">
+        <form class="form-horizontal" action="" method="post">
+            {% csrf_token %}
+            {% include 'form_template.html' %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}

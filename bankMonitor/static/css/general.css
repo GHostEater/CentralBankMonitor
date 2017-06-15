@@ -1,0 +1,71 @@
+body{
+    padding-top: 80px;
+}
+.content{
+    padding: 10px 10px 10px 10px;
+    overflow: hidden;
+}
+.content-horiz{
+    padding: 0 10px 0 10px;
+    overflow: hidden;
+}
+.content-vert{
+    padding: 10px 0 10px 0;
+    overflow: hidden;
+}
+.sm-content{
+    padding: 5px 5px 5px 5px;
+    overflow: hidden;
+}
+.sm-content-horiz{
+    padding: 0 5px 0 5px;
+    overflow: hidden;
+}
+.sm-content-vert{
+    padding: 5px 0 5px 0;
+    overflow: hidden;
+}
+.lg-content-vert{
+    padding: 20px 0 20px 0;
+    overflow: hidden;
+}
+.lg-content-horiz{
+    padding: 0 20px 0 20px;
+    overflow: hidden;
+}
+.lg-content{
+    padding: 20px 20px 20px 20px;
+    overflow: hidden;
+}
+img.pull-left{
+  padding-right: 0.5em;
+}
+
+input.ng-touched.ng-invalid {
+  border: 2px #ff0000 solid;
+}
+
+#loaderDiv {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1100;
+  background-color: #000000;
+  opacity: 0.8;
+}
+.ajax-loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -32px; /* -1 * image width / 2 */
+  margin-top: -32px; /* -1 * image height / 2 */
+  display: block;
+}
+.carousel-caption{
+    background-color: rgba(0,0,0,.6);
+}
+.text-default{
+    color: #FFFFFF;
+}

@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block title %}Banks{% endblock %}
+{% block body %}
+{% include 'layout/dash.html' %}
+    <div class="col-sm-10">
+        <a href="{% url 'bank-add' %}" class="btn btn-primary">Add Bank</a>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <th>Name</th>
+                    <th>Balance</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    {% for bank in banks %}
+                        <tr>
+                            <td>{{ bank.name }}</td>
+                            <td>{{ bank.balance }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-warning" href="{% url 'bank-edit' bank.id %}">Edit</a>
+                                <a class="btn btn-sm btn-danger" href="{% url 'bank-delete' bank.id %}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

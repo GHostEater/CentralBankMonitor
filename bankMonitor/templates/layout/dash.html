@@ -1,0 +1,20 @@
+<div class="col-sm-2">
+    <div class="panel panel-default text-center">
+        <div class="panel-heading">
+            <h3 class="panel-title">Dashboard for {{ request.user.bank.name }} Officer</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="nav nav-stacked">
+                {% if request.user.user_type == 'SU' %}
+                    <li><a href="{% url 'banks' %}">Banks</a></li>
+                    <li><a href="{% url 'officers' %}">Officers</a></li>
+                {% elif request.user.user_type == 'A' %}
+                    <li><a href="{% url 'banks' %}">Banks</a></li>
+                    <li><a href="{% url 'monitor' %}">Bank Monitor</a></li>
+                {% elif request.user.user_type == 'B' %}
+                    <li><a href="{% url 'trans' %}">Transactions</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>

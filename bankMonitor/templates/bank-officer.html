@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% block title %}Bank Officers{% endblock %}
+{% block body %}
+{% include 'layout/dash.html' %}
+    <div class="col-sm-10">
+        <a href="{% url 'bank-officer-add' %}" class="btn btn-primary">Add Bank Officer</a>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>E-Mail</th>
+                    <th>Bank</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    {% for officer in officers %}
+                        <tr>
+                            <td>{{ officer.user.last_name }}, {{ officer.user.first_name }}</td>
+                            <td>{{ officer.user.username }}</td>
+                            <td>{{ officer.user.email }}</td>
+                            <td>{{ officer.bank.name }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-warning" href="{% url 'bank-officer-edit' officer.id %}">Edit</a>
+                                <a class="btn btn-sm btn-danger" href="{% url 'bank-officer-delete' officer.id %}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

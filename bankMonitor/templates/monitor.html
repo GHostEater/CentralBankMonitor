@@ -5,9 +5,9 @@
     <div class="col-sm-10 text-center">
         <div class="col-sm-2">
             {% for bank in banks %}
-            {% if bank.balance <= 0 %}
+            {% if bank.balance <= bank.limit %}
                 <div class="panel panel-danger">
-            {% elif bank.balance > 0 %}
+            {% elif bank.balance > bank.limit %}
                 <div class="panel panel-primary">
             {% endif %}
             <div class="panel-heading">

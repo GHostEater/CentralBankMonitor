@@ -1,18 +1,29 @@
 <div class="col-sm-2">
     <div class="panel panel-default text-center">
         <div class="panel-heading">
+            {% if request.user.type == 1 %}
+            <h3 class="panel-title">Dashboard for Admin</h3>
+            {% elif request.user.type == 2 %}
+            <h3 class="panel-title">Dashboard for Central Bank Officer</h3>
+            {% elif request.user.type == 3 %}
             <h3 class="panel-title">Dashboard for {{ request.user.bank.name }} Officer</h3>
+            {% endif %}
         </div>
         <div class="panel-body">
-            <ul class="nav nav-stacked">
-                {% if request.user.user_type == 'SU' %}
+            <ul class="nav nav-pills nav-stacked">
+                {% if request.user.type == 1 %}
                     <li><a href="{% url 'banks' %}">Banks</a></li>
-                    <li><a href="{% url 'officers' %}">Officers</a></li>
-                {% elif request.user.user_type == 'A' %}
+                    <li><a href="{% url 'bank-officers' %}">Bank Officers</a></li>
+                {% elif request.user.type == 2 %}
                     <li><a href="{% url 'banks' %}">Banks</a></li>
+                    <li><a href="{% url 'bank-officers' %}">Bank Officers</a></li>
+                    <li><a href="{% url 'spec-trans' %}">Special Transaction Requests</a></li>
                     <li><a href="{% url 'monitor' %}">Bank Monitor</a></li>
-                {% elif request.user.user_type == 'B' %}
+                    <li><a href="{% url 'trans-report' %}">Transaction Reports</a></li>
+                    <li><a href="{% url 'spec-trans-report' %}">Special Transaction Reports</a></li>
+                {% elif request.user.type == 3 %}
                     <li><a href="{% url 'trans' %}">Transactions</a></li>
+                    <li><a href="{% url 'spec-trans' %}">Special Transactions</a></li>
                 {% endif %}
             </ul>
         </div>

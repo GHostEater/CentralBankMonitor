@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% block title %}Special Transactions{% endblock %}
+{% block body %}
+{% include 'layout/dash.html' %}
+    <div class="col-sm-10">
+        <div class="row">
+            <form class="form-horizontal" action="#" method="post">
+                {% csrf_token %}
+                {% include 'form_template.html' %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        {% if request.method == 'POST' %}
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-10">
+                <h4>{{ bank.name }}</h4>
+                <span>Capital Adequacy: {{ bank.balance }}</span>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <th>Status</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Details</th>
+                    <th>Date</th>
+                    <th>Bank</th>
+                    <th>Officer</th>
+                    <th>Approved By Central Officer</th>
+                </thead>
+                <tbody>
+                    {% for tran in trans %}
+                        <tr>
+                            {% if tran.status == 0 %}
+                            <td>Pending</td>
+                            {% elif tran.status == 1 %}
+                            <td class="bg-success">Approved</td>
+                            {% elif tran.status == 2 %}
+                            <td class="bg-danger">Declined: {{ tran.reason }}</td>
+                            {% endif %}
+                            <td>{{ tran.type }}, {{ tran.trans_type }}</td>
+                            <td>{{ tran.amount }}</td>
+                            <td>{{ tran.detail }}</td>
+                            <td>{{ tran.date }}</td>
+                            <td>{{ tran.bank.name }}</td>
+                            <td>{{ tran.bank_officer.last_name }}, {{ tran.bank_officer.first_name }}</td>
+                            <td>{{ tran.central_officer.last_name }}, {{ tran.central_officer.first_name }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
